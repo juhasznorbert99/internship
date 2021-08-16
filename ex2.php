@@ -142,25 +142,6 @@ Republic"=>"Prague", "Estonia"=>"Tallin", "Hungary"=>"Budapest", "Latvia"=>"Riga
 	echo("</br>");
 	$array1 = array(array(77, 87), array(23, 45));
 	$array2 = array("w3resource", "com");
-	/*
-	//am doar testat cu acest cod daca imi da la fel
-	function merge_arrays_by_index($x, $y){
-		$temp = array();
-		$temp[] = $x;
-		if(is_scalar($y))
-		{
-			$temp[] = $y;
-		}
-		else
-		{
-			foreach($y as $k => $v){
-				$temp[] = $v;
-			}
-		}
-		return $temp;
-	}
-	echo '<pre>'; print_r(array_map('merge_arrays_by_index',$array2, $array1));
-	*/
 	$i=0;
 	foreach ($array1 as $key => $value) {
 		$array1[$i][] = $array2[$i];
