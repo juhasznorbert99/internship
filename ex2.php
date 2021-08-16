@@ -60,6 +60,7 @@ Republic"=>"Prague", "Estonia"=>"Tallin", "Hungary"=>"Budapest", "Latvia"=>"Riga
  }
   }';
 	$aux = json_decode($json,true);
+	//ca sa ia in calcul si acel publisher ca altfel crapa la detail care e un array
 	array_walk_recursive($aux,"recursive");
 ?>
 
@@ -98,3 +99,73 @@ Republic"=>"Prague", "Estonia"=>"Tallin", "Hungary"=>"Budapest", "Latvia"=>"Riga
 		echo "$key : $value"."</br>";
 	} 
 ?>
+
+<?php
+	echo("</br>");
+	$array = array(78, 60, 62, 68, 71, 68, 73, 85, 66, 64, 76, 63, 75, 76, 73, 68, 62, 73, 72, 65, 74,62, 62, 65, 64, 68, 73, 75, 79, 73);
+	$average = array_sum($array)/count($array);
+	echo($average);
+	sort($array);
+	echo("</br>");
+	for($i=0;$i<5;$i++){
+		echo($array[$i])." ";
+	}
+
+	echo("</br>");
+	for($i=count($array)-5;$i<count($array);$i++){
+		echo($array[$i])." ";
+	}
+?>
+
+<?php
+	echo("</br>");
+	$array = array(5,3,1,3,8,7,4,1,1,3);
+	function beadSortInsideFunction($array){
+		$aux = $array;
+		if(count($aux)==0)
+			return array();
+		else if(count($aux)==1)
+			return array_chunk($aux[0], 1);
+		array_unshift($array, NULL);
+		$transpose = call_user_func_array('array_map', $array);
+		return array_map('array_filter', $transpose);
+	}
+	function beadSort($array){
+		foreach ($array as $i)
+			$poles []= array_fill(0, $i, 1);
+		return array_map('count', beadSortInsideFunction(beadSortInsideFunction($poles)));
+	}
+	echo '<pre>';print_r(beadSort($array));
+?>
+
+<?php
+	echo("</br>");
+	$array1 = array(array(77, 87), array(23, 45));
+	$array2 = array("w3resource", "com");
+	/*
+	//am doar testat cu acest cod daca imi da la fel
+	function merge_arrays_by_index($x, $y){
+		$temp = array();
+		$temp[] = $x;
+		if(is_scalar($y))
+		{
+			$temp[] = $y;
+		}
+		else
+		{
+			foreach($y as $k => $v){
+				$temp[] = $v;
+			}
+		}
+		return $temp;
+	}
+	echo '<pre>'; print_r(array_map('merge_arrays_by_index',$array2, $array1));
+	*/
+	$i=0;
+	foreach ($array1 as $key => $value) {
+		$array1[$i][] = $array2[$i];
+		$i++;
+	}
+	print_r($array1);
+?>
+
